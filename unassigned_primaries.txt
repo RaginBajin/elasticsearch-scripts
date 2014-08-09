@@ -1,0 +1,9 @@
+# This command will help fix the issue of missing primaries. 
+
+curl XPOST -s 'http://localhost:9200/_cluster/reroute?pretty=true' -d '{ "commands" : [ { "allocate" : { "index" : "logstash-2014-08-09", "shard" : 6 , "node" : "_9KoJMKqSl-ZLujUtBcllA", "allow_primary" : 1 }}]}'
+
+
+# You will need to replace the "logstash-2014-08-09" with the correct index name
+# The shard is the missing shard value. You can go into the index directory and you will see numbers like 0,1,2,3,4
+# use those numbers to respread out the shards. 
+# Node is the name that you want to fix.  You can see those values from the log files
